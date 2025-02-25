@@ -4,7 +4,7 @@
 ¡Bienvenido a **CaffeNet**! 🎉 Este es un sistema diseñado para optimizar la gestión de cafeterías, brindando una experiencia eficiente tanto para los clientes como para el personal. Con CaffeNet, la administración de pedidos, inventario y pagos se vuelve más ágil y organizada.  
 
 ## ✨ **Funciones principales:**  
-- ✅ **Gestión de pedidos**: Permite a los clientes realizar pedidos en línea.
+- ✅ **Gestión de pedidos**: Permite a los clientes realizar pedidos mediante la aplicación.
 - ✅ **Menú digital interactivo**: Visualización del menú con descripciones y precios actualizados.  
 - ✅**Gestión de pagos**: Integración con pagos en línea. 
 - ✅ **Control de inventario**: Monitoreo del stock de ingredientes y productos en tiempo real.  
