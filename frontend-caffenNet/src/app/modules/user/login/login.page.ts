@@ -22,7 +22,7 @@ export class LoginPage {
   errors: string[] = [];
 
   constructor(
-    private loginService: LoginService,  // Inyecta el servicio
+    private loginService: LoginService,
     private navCtrl: NavController,
     private alertCtrl: AlertController
   ) {}
@@ -30,20 +30,23 @@ export class LoginPage {
   login() {
     this.errors = [];
     this.successMessage = '';
-  
+
     if (!this.userId) this.errors.push('El correo electrónico es obligatorio.');
     if (!this.password) this.errors.push('La contraseña es obligatoria.');
-  
+
     if (this.errors.length > 0) return;
-  
+
     const userData = {
       userId: this.userId,
       password: this.password
     };
-  
+
     this.loginService.login(userData).subscribe({
       next: (response: boolean) => {
         if (response === true) {
+          // Guardar el correo en localStorage
+          localStorage.setItem('userEmail', this.userId);
+
           this.successMessage = 'Inicio de sesión exitoso. Redirigiendo al menú...';
           setTimeout(() => this.navCtrl.navigateRoot('/mainmenu'), 1000);
         } else {
@@ -55,6 +58,7 @@ export class LoginPage {
       }
     });
   }
+
   forgotPassword() {
     this.alertCtrl.create({
       header: 'Recuperar contraseña',
@@ -78,7 +82,7 @@ export class LoginPage {
               this.errors = ['El correo es obligatorio'];
               return;
             }
-  
+
             this.loginService.recuperarContrasenia(data.email).subscribe({
               next: (response) => {
                 this.successMessage = response.message;

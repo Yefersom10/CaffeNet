@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NavController, IonicModule} from '@ionic/angular';
+import { NavController, IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { LoginService } from './login.service';
@@ -21,7 +21,7 @@ export class LoginPage {
   errors: string[] = [];
 
   constructor(
-    private loginService: LoginService, // Usa un servicio diferente si es necesario
+    private loginService: LoginService,
     private navCtrl: NavController,
     private alertCtrl: AlertController
   ) {}
@@ -43,8 +43,11 @@ export class LoginPage {
     this.loginService.login(userData).subscribe({
       next: (response: boolean) => {
         if (response === true) {
+          // Guardar el correo del administrador en localStorage
+          localStorage.setItem('adminEmail', this.userId);
+
           this.successMessage = 'Inicio de sesión exitoso. Redirigiendo al panel de administración...';
-          setTimeout(() => this.navCtrl.navigateRoot('/mainmenu'), 1000);
+          setTimeout(() => this.navCtrl.navigateRoot('/home-admin'), 1000);
         } else {
           this.errors.push('Credenciales inválidas para el administrador.');
         }
@@ -54,6 +57,7 @@ export class LoginPage {
       }
     });
   }
+
   forgotPassword() {
     this.alertCtrl.create({
       header: 'Recuperar contraseña',
@@ -77,7 +81,7 @@ export class LoginPage {
               this.errors = ['El correo es obligatorio'];
               return;
             }
-  
+
             this.loginService.recuperarContrasenia(data.email).subscribe({
               next: (response) => {
                 this.successMessage = response.message;

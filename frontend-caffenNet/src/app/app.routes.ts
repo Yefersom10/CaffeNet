@@ -11,10 +11,6 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'products',
-    loadComponent: () => import('./modules/user/products/products.page').then( m => m.ProductsPage)
-  },
-  {
     path: 'mainmenu',
     loadComponent: () => import('./modules/user/mainmenu/mainmenu.component').then((m) => m.MainmenuComponent),
   },
@@ -29,6 +25,14 @@ export const routes: Routes = [
   {
     path: 'admin-login',
     loadComponent: () => import('./modules/admin/login-admin/login.page').then(m => m.LoginPage)
+  },
+  {
+    path: 'products_admin',
+    loadComponent: () => import('./modules/admin/products-admin/products-admin.page').then( m => m.ProductsAdminPage)
+  },
+  {
+    path: 'home-admin',
+    loadComponent: () => import('./modules/admin/home-admin/home-admin.component').then((m) => m.HomeAdminComponent),
   },
   
 ];
